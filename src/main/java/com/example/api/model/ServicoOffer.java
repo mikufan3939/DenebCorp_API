@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "service_offer")
-public class ServiceOffer {
+public class ServicoOffer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class ServiceOffer {
 
     @ManyToOne
     @JoinColumn(name = "service_id")
-    private Service service;
+    private Servico servico;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
