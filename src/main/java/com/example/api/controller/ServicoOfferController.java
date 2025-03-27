@@ -5,6 +5,8 @@ import com.example.api.repository.ServicoOfferRepository;
 import com.example.api.service.ServicoOfferService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +21,8 @@ public class ServicoOfferController {
     private ServicoOfferRepository servicoOfferRepository;
 
     @PostMapping("")
-    public ServicoOffer createServicoOffer(ServicoOffer servicoOffer){
-        return servicoOfferService.createServicoOffer(servicoOffer);
+    public ResponseEntity<ServicoOffer> createServicoOffer(ServicoOffer servicoOffer){
+        return new ResponseEntity<>(servicoOfferService.createServicoOffer(servicoOffer), HttpStatus.CREATED);
     }
 
     @GetMapping("")

@@ -4,6 +4,9 @@ import com.example.api.model.Rating;
 import com.example.api.service.RatingService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +19,8 @@ public class RatingController {
     private RatingService ratingService;
 
     @PostMapping("")
-    public Rating createRating(@RequestBody Rating rating) {
-        return ratingService.createRating(rating);
+    public ResponseEntity<Rating> createRating(@RequestBody Rating rating) {
+        return new ResponseEntity<>(ratingService.createRating(rating), HttpStatus.CREATED);
     }
 
     @GetMapping("")

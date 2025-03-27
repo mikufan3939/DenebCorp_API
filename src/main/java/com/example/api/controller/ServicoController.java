@@ -4,6 +4,8 @@ import com.example.api.model.Servico;
 import com.example.api.service.ServicoService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +18,8 @@ public class ServicoController {
     private ServicoService servicoService;
 
     @PostMapping("")
-    public Servico createServico(@RequestBody Servico servico){
-        return servicoService.createServico(servico);
+    public ResponseEntity<Servico> createServico(@RequestBody Servico servico){
+        return new ResponseEntity<>(servicoService.createServico(servico), HttpStatus.CREATED);
     }
 
     @GetMapping("")
