@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -39,5 +41,9 @@ public class User {
     @Lob
     @Column(name = "profile_photo")
     private byte[] profilePhoto;
+
+    @OneToMany
+    @Column(name="ratings")
+    private List<Rating> ratings;
 
 }
