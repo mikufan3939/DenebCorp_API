@@ -3,6 +3,7 @@ package com.example.api.service;
 import com.example.api.model.User;
 import com.example.api.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getById(long id){
+    public User getById(long id) {
         return userRepository.findById(id).orElseThrow();
     }
 

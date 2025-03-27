@@ -4,6 +4,8 @@ import com.example.api.model.ServicoSolicitation;
 import com.example.api.service.ServicoSolicitationService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +18,8 @@ public class ServicoSolicitationController {
     private ServicoSolicitationService servicoSolicitationService;
 
     @PostMapping("")
-    public ServicoSolicitation createServicoSolicitation(@RequestBody ServicoSolicitation servicoSolicitation){
-        return servicoSolicitationService.createServicoSolicitation(servicoSolicitation);
+    public ResponseEntity<ServicoSolicitation> createServicoSolicitation(@RequestBody ServicoSolicitation servicoSolicitation){
+        return new ResponseEntity<>(servicoSolicitationService.createServicoSolicitation(servicoSolicitation), HttpStatus.CREATED);
     }
 
     @GetMapping("")

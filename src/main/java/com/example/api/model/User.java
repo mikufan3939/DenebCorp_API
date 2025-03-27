@@ -42,7 +42,7 @@ public class User {
     @Column(name = "profile_photo")
     private byte[] profilePhoto;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     @Column(name="ratings")
     private List<Rating> ratings;
 
