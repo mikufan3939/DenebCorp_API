@@ -4,13 +4,19 @@ import com.example.api.model.User;
 import com.example.api.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException;
+import org.hibernate.annotations.processing.SQL;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @AllArgsConstructor
 @Service
@@ -23,15 +29,30 @@ public class UserService {
     }
 
     public User getById(long id) {
-        return userRepository.findById(id).orElseThrow();
+        try{
+            return userRepository.findById(id).orElseThrow();
+        }
+        catch (NoSuchElementException exception){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario não encontrado!", exception);
+        }
     }
 
-    public User createUser(User user){
-        return userRepository.save(user);
+    public User createUser(User user) {
+        try{
+            return userRepository.save(user);
+        }
+        catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage(), exception);
+        }
     }
 
     public void deleteUser(long id){
-        userRepository.deleteById(id);
+        try{
+            userRepository.deleteById(id);
+        }
+        catch (EmptyResultDataAccessException exception){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado!", exception);
+        }
     }
 
     public User updateUser(long id, User user){
