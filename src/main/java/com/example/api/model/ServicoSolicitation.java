@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "service_solicitation")
-public class ServiceSolicitation {
+public class ServicoSolicitation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class ServiceSolicitation {
 
     @ManyToOne
     @JoinColumn(name = "service_offer_id")
-    private ServiceOffer serviceOffer;
+    private ServicoOffer servicoOffer;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

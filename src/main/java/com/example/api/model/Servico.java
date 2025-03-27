@@ -12,14 +12,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "services")
-public class Service {
+public class Servico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     //provavelmente usar algo parecido com tipo de pagamento no lugar de nome
-    private String nome;
+    private ServiceName name;
 
     private String descricao;
 }

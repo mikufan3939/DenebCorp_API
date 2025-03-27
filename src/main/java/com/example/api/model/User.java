@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -36,6 +37,13 @@ public class User {
     @Column(name = "birth_date")
     private Date birthDate;
 
+    //adicionar compressao
+    @Lob
     @Column(name = "profile_photo")
-    private String profilePhoto;
+    private byte[] profilePhoto;
+
+    @OneToMany
+    @Column(name="ratings")
+    private List<Rating> ratings;
+
 }
