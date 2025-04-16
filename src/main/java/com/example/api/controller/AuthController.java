@@ -52,7 +52,7 @@ public class AuthController {
                     .orElse(null);
 
             if (user == null) {
-                return ResponseEntity.status(401).body("Usuário não encontrado");
+                return ResponseEntity.status(401).body(null);
             }
 
 
@@ -64,7 +64,7 @@ public class AuthController {
             String token = tokenService.generateToken(user);
             return ResponseEntity.ok(Collections.singletonMap("token", token));
         } catch (AuthenticationException e) {
-            return ResponseEntity.status(401).body("Usuário ou Senha Inválidos");
+            return ResponseEntity.status(401).body(null);
         }
     }
 
