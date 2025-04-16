@@ -40,7 +40,7 @@ public class AuthController {
         try {
             return authenticateUser(request.getUsername(), request.getPassword());
         } catch (AuthenticationException e) {
-            return ResponseEntity.status(401).body("Credenciais inválidas");
+            return ResponseEntity.status(401).body(null);
         }
     }
 
