@@ -1,10 +1,7 @@
 package com.example.api.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -18,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity(name = "users")
 @Table(name = "users")
+@ToString
 public class User implements UserDetails {
     //tentar aprender sobre uuid
     @Id
@@ -49,7 +47,7 @@ public class User implements UserDetails {
     @Column(name = "profile_photo")
     private byte[] profilePhoto;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     @Column(name="ratings")
     private List<Rating> ratings;
 

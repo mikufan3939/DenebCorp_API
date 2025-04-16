@@ -44,6 +44,7 @@ public class AuthController {
         }
     }
 
+
     // Método para autenticar o usuário com o nome de usuário e senha
     private ResponseEntity<?> authenticateUser(String identifier, String password) {
         try {
