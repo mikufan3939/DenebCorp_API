@@ -62,7 +62,7 @@ public class AuthController {
 
 
             String token = tokenService.generateToken(user);
-            return ResponseEntity.ok(Collections.singletonMap("token", token));
+            return ResponseEntity.ok().body(token);
         } catch (AuthenticationException e) {
             return ResponseEntity.status(401).body(null);
         }
