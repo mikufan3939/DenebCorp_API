@@ -19,6 +19,7 @@ import java.util.Collections;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin
 public class AuthController {
 
     @Autowired
